@@ -1,5 +1,5 @@
 {
-  "name": "c19-pwa-editor",
+  "name": "JATE",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -16,7 +16,6 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",
-    "idb": "^8.0.0",
     "if-env": "^1.0.4"
   },
   "devDependencies": {
