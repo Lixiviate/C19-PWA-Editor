@@ -28,6 +28,10 @@
   - [edX Xpert Learning Assistant](https://www.edx.org/)
   - [Stack Overflow](https://stackoverflow.com/)
 - Development Resources:
+  - [Express.js](https://expressjs.com/)
+  - [if-env](https://github.com/ericclemmons/if-env#readme)
+  - [concurrently](https://github.com/open-cli-tools/concurrently#readme)
+  - [nodemon](https://nodemon.io/)
 
 ## License
 
