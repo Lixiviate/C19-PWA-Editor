@@ -2,6 +2,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
 const path = require("path");
 const { InjectManifest } = require("workbox-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = () => {
   return {
@@ -14,20 +15,15 @@ module.exports = () => {
       filename: "[name].bundle.js",
       path: path.resolve(__dirname, "dist"),
     },
-    // TODO: Add and configure workbox plugins for a service worker and manifest file.
     plugins: [
-      // Generates html and injects bundle
       new HtmlWebpackPlugin({
         template: "./index.html",
         title: "Just Another Text Editor",
       }),
-      // Creates service worker file and injects it into html
       new InjectManifest({
         swSrc: "./src-sw.js",
         swDest: "src-sw.js",
       }),
-
-      // Creates manifest file
       new WebpackPwaManifest({
         fingerprints: false,
         inject: true,
@@ -46,9 +42,31 @@ module.exports = () => {
             destination: path.join("assets", "icons"),
           },
         ],
+        screenshots: [
+          {
+            src: "./assets/screenshot/screenshot.png",
+            sizes: "1920x1080",
+            type: "image/png",
+            label: "Just Another Text Editor!",
+          },
+          {
+            src: "./assets/screenshot/screenshot.png",
+            sizes: "1920x1080",
+            type: "image/png",
+            label: "Just Another Text Editor!",
+            form_factor: "wide",
+          },
+        ],
+      }),
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: "src/images/screenshot.png",
+            to: "assets/screenshot/screenshot.png",
+          },
+        ],
       }),
     ],
-    // TODO: Add CSS loaders and babel to webpack.
     module: {
       rules: [
         {
