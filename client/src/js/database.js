@@ -19,7 +19,7 @@ export const putDb = async (content) => {
     const jateDb = await openDB("jate", 1);
     const tx = jateDb.transaction("jate", "readwrite");
     const store = tx.objectStore("jate");
-    const request = store.put({ jate: content });
+    const request = store.put({ id: 1, jate: content });
     const result = await request;
     console.log("Data saved to the database", result);
   } catch (error) {
@@ -34,10 +34,10 @@ export const getDb = async () => {
     const jateDb = await openDB("jate", 1);
     const tx = jateDb.transaction("jate", "readonly");
     const store = tx.objectStore("jate");
-    const request = store.getAll();
+    const request = store.get(1);
     const result = await request;
     console.log("Data retrieved from the database", result);
-    return result;
+    return result?.jate;
   } catch (error) {
     console.error("Error getting data from the database", error);
   }
